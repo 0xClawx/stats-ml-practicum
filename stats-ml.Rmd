@@ -92,6 +92,7 @@ m <- randomForest(cover ~ distance, data = canopy)
 ggplot(canopy, aes(distance, cover)) + geom_point(col = "gray") +
   geom_line(aes(distance[idx], predict(m)[idx]))
 predict(m, data.frame(distance = 0.5), se = TRUE)
+plot(m)
 ```
 
 Questions and tasks:
@@ -100,6 +101,7 @@ Questions and tasks:
 - Comment on the fit; how does it differ from the previous fits?
 - Comment on the prediction; how would you obtain a measure of uncertainty?
 
+According to the plot 
 
 ## Statistics 2: Cubic Fit
 
@@ -108,6 +110,8 @@ m <- glm(cover ~ poly(distance, 3), data = canopy, family = quasibinomial)
 ggplot(canopy, aes(distance, cover)) + geom_point(col = "gray") +
   geom_line(aes(distance[idx], fitted(m)[idx]))
 predict(m, data.frame(distance = 0.5), se = TRUE, type = "response")
+
+plot(m)
 ```
 
 Questions and tasks:
@@ -115,6 +119,9 @@ Questions and tasks:
 - Comment on the fit and compare it to the first model; plot and check residuals.
 - Comment on the prediction and compare it to previous results.
 - How would you know that a cubic fit is good enough?
+
+The residual plot shows that the residuals are around 0, there is linear relationship between predictors and response.
+The second plot shows that the residuals are normally distributed.1
 
 
 ## Discussion
